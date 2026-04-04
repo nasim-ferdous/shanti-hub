@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  /* আমরা light এবং dark (night) দুটি থিমই কনফিগার করব */
+  themes:
+    light --default,
+    night;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light Theme: শান্ত এবং পরিষ্কার মেজাজের জন্য */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  /* Brand Colors - সোথিং ব্লু এবং গ্রিন */
+  --color-primary: oklch(65% 0.12 230); /* Soft Sky Blue */
+  --color-secondary: oklch(70% 0.12 170); /* Healing Mint/Teal */
+  --color-accent: oklch(85% 0.1 200); /* Light Azure for highlights */
+
+  /* Base Colors - চোখের আরামের জন্য হালকা অফ-হোয়াইট */
+  --color-base-100: oklch(99% 0.01 220); /* Very light blue-white background */
+  --color-base-200: oklch(96% 0.02 220); /* Section backgrounds */
+  --color-base-300: oklch(92% 0.03 220); /* Borders and dividers */
+
+  /* Neutral - টেক্সট পড়ার সুবিধার জন্য ডিপ গ্রে-ব্লু */
+  --color-neutral: oklch(30% 0.05 230);
+  --color-neutral-content: oklch(98% 0.01 220);
+
+  /* Feedback - নরম কালার */
+  --color-success: oklch(75% 0.15 150);
+  --color-error: oklch(65% 0.18 25);
+  --color-info: oklch(70% 0.1 210);
+  --color-warning: oklch(85% 0.15 80);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Night Theme: ডার্ক মোডের জন্য গভীর এবং ড্রাউজি ব্লু-ব্ল্যাক */
+@plugin "daisyui/theme" {
+  name: "night";
+
+  --color-primary: oklch(55% 0.15 230); /* Deeper Blue */
+  --color-secondary: oklch(50% 0.12 170); /* Darker Teal */
+  --color-accent: oklch(40% 0.1 200);
+
+  /* Base Colors - ডার্ক মোডে চোখের ওপর চাপ কমাবে */
+  --color-base-100: oklch(18% 0.03 230); /* Deep Navy Background */
+  --color-base-200: oklch(14% 0.03 230);
+  --color-base-300: oklch(10% 0.03 230);
+
+  --color-neutral: oklch(95% 0.01 230); /* Off-white text */
+  --color-neutral-content: oklch(15% 0.03 230);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
