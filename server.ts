@@ -12,8 +12,9 @@ const roomUsers: { [key: string]: Set<string> } = {};
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: ["https://shanti-hub.vercel.app", "http://localhost:3000"],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -57,7 +58,6 @@ io.on("connection", (socket) => {
     console.log("User Disconnected:", socket.id);
   });
 });
-
 
 const PORT = parseInt(process.env.PORT || "3001", 10);
 

@@ -4,8 +4,10 @@ import { Send, MessageCircle, Users } from "lucide-react"; // Users আইকন
 import { io } from "socket.io-client";
 import Swal from "sweetalert2";
 
-// সকেট কানেকশন ইনিশিয়েলাইজ করা (সার্ভার পোর্ট ৩০০১)
-const socket = io("http://localhost:3001");
+const socket = io("https://shanti-hub.onrender.com", {
+  transports: ["websocket"],
+  withCredentials: true,
+});
 
 export default function ChatBox({
   groupId,
@@ -72,14 +74,13 @@ export default function ChatBox({
 
   return (
     <div className="flex flex-col h-[550px] bg-base-100 rounded-2xl border border-base-300 shadow-sm overflow-hidden">
-      
       {/* Header Area with Active Count */}
       <div className="p-4 border-b border-base-300 bg-base-100 flex items-center justify-between">
         <div className="flex items-center gap-2 font-bold text-lg">
           <MessageCircle className="text-primary" />
           <span>কমিউনিটি ডিসকাশন</span>
         </div>
-        
+
         {/* লাইভ অনলাইন ইন্ডিকেটর */}
         <div className="flex items-center gap-2 bg-success/10 text-success px-3 py-1 rounded-full text-sm font-medium animate-pulse">
           <span className="w-2 h-2 bg-success rounded-full"></span>
@@ -94,7 +95,13 @@ export default function ChatBox({
             <div key={msg._id} className="chat chat-start">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full border border-primary/10 shadow-sm">
-                  <img src={msg.senderAvatar || "https://api.dicebear.com/7.x/avataaars/svg?seed=neutral"} alt="avatar" />
+                  <img
+                    src={
+                      msg.senderAvatar ||
+                      "https://api.dicebear.com/7.x/avataaars/svg?seed=neutral"
+                    }
+                    alt="avatar"
+                  />
                 </div>
               </div>
               <div className="chat-header text-xs opacity-50 mb-1 ml-1">
@@ -125,7 +132,10 @@ export default function ChatBox({
           placeholder="আপনার মেসেজ লিখুন..."
           className="input input-bordered flex-1 rounded-xl focus:outline-none focus:border-primary transition-all"
         />
-        <button type="submit" className="btn btn-primary btn-circle shadow-md hover:scale-105 transition-transform">
+        <button
+          type="submit"
+          className="btn btn-primary btn-circle shadow-md hover:scale-105 transition-transform"
+        >
           <Send size={20} />
         </button>
       </form>
