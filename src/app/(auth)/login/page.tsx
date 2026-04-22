@@ -26,7 +26,6 @@ export default function LoginPage() {
       if (res?.ok) router.push("/dashboard");
       else alert("ভুল ইমেইল বা পাসওয়ার্ড");
     } else {
-      // রেজিস্ট্রেশন কল
       const res = await fetch("/api/register", {
         method: "POST",
         body: JSON.stringify(formData),

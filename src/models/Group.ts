@@ -10,10 +10,11 @@ const GroupSchema = new mongoose.Schema(
     tags: [String],
     slug: { type: String, unique: true }, // URL এর জন্য (e.g., /explore/anxiety-support)
   },
-  { 
+  {
     timestamps: true,
-    collection: "shanti_groups" // আপনার পছন্দের ফরম্যাট অনুযায়ী
-  }
+    collection: "shanti_groups",
+  },
 );
 
-export const Group = mongoose.models.Group || mongoose.model("Group", GroupSchema);
+export const Group =
+  mongoose.models.Group || mongoose.model("Group", GroupSchema);

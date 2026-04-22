@@ -6,7 +6,7 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 
-// প্রতিটি রুমে কতজন আছে তা ট্র্যাক করার জন্য
+
 const roomUsers: { [key: string]: Set<string> } = {};
 
 const server = http.createServer(app);
@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
     console.log(
       `User ${socket.id} joined group: ${groupId}. Total: ${roomUsers[groupId].size}`,
     );
-  }); // এখানে ব্র্যাকেটটি ঠিক করা হয়েছে
+  }); 
 
   // ডিসকানেক্ট হওয়ার ঠিক আগে কোন কোন রুমে ছিল তা চেক করা
   socket.on("disconnecting", () => {

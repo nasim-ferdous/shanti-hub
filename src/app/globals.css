@@ -1,13 +1,11 @@
 @import "tailwindcss";
 
 @plugin "daisyui" {
-  /* আমরা light এবং dark (night) দুটি থিমই কনফিগার করব */
   themes:
     light --default,
     night;
 }
 
-/* Light Theme: শান্ত এবং পরিষ্কার মেজাজের জন্য */
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
@@ -33,7 +31,7 @@
   --color-warning: oklch(85% 0.15 80);
 }
 
-/* Night Theme: ডার্ক মোডের জন্য গভীর এবং ড্রাউজি ব্লু-ব্ল্যাক */
+
 @plugin "daisyui/theme" {
   name: "night";
 

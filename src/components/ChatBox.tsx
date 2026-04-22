@@ -18,11 +18,11 @@ export default function ChatBox({
 }) {
   const [messages, setMessages] = useState(initialMessages);
   const [inputText, setInputText] = useState("");
-  const [activeCount, setActiveCount] = useState(0); // লাইভ ইউজার কাউন্ট স্টেট
+  const [activeCount, setActiveCount] = useState(0); 
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // ১. নির্দিষ্ট গ্রুপ রুমে জয়েন করা
+    
     socket.emit("join-group", groupId);
 
     // ২. নতুন মেসেজ আসার লিসেনার

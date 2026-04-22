@@ -4,7 +4,6 @@ import { connectDB } from "@/lib/db";
 import { User } from "@/models/User";
 import bcrypt from "bcryptjs";
 
-// এই অবজেক্টটি export করলে আপনি অন্য ফাইলে getServerSession(authOptions) ব্যবহার করতে পারবেন
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({

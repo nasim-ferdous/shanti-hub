@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema(
     role: { type: String, enum: ["user", "admin"], default: "user" },
     alias: { type: String },
     avatar: { type: String },
-    // নতুন ফিল্ড: ইউজার যেসব গ্রুপে জয়েন করেছেন তাদের আইডি এখানে জমা থাকবে
+
     joinedGroups: [
       {
         type: mongoose.Schema.Types.ObjectId,

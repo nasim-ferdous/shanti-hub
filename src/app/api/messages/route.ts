@@ -3,7 +3,7 @@ import { Message } from "@/models/Message";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
-import mongoose from "mongoose"; // এটি যোগ করুন
+import mongoose from "mongoose";
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +13,6 @@ export async function POST(req: Request) {
 
     const { groupId, text } = await req.json();
 
-    // টেক্সট বা গ্রুপ আইডি না থাকলে এরর দিবে
     if (!groupId || !text) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }

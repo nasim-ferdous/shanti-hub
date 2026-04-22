@@ -8,7 +8,6 @@ export async function POST(req: Request) {
     const { name, email, password } = await req.json();
     await connectDB();
 
-    // ইউজার অলরেডি আছে কিনা চেক
     const userExists = await User.findOne({ email });
     if (userExists) {
       return NextResponse.json(
@@ -17,10 +16,10 @@ export async function POST(req: Request) {
       );
     }
 
-    // পাসওয়ার্ড হ্যাশ করা
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // ছদ্মনাম তৈরি (যেমন: Anonymous-1234)
+    
     const randomAlias = `Anonymous-${Math.floor(1000 + Math.random() * 9000)}`;
 
     // Unsplash থেকে র‍্যান্ডম অবতার (যাতে প্রতিবার আলাদা দেখায়)

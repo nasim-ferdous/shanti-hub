@@ -13,17 +13,17 @@ export async function POST(req: Request) {
     const { groupId } = await req.json();
     await connectDB();
 
-    // ১. চেক করা ইউজার অলরেডি জয়েন করা কি না
+    
     const user = await User.findOne({ email: session.user?.email });
     if (user.joinedGroups.includes(groupId)) {
       return NextResponse.json({ message: "Already a member" }, { status: 400 });
     }
 
-    // ২. ইউজারের লিস্টে গ্রুপ অ্যাড করা
+    
     user.joinedGroups.push(groupId);
     await user.save();
 
-    // ৩. গ্রুপের মেম্বার কাউন্ট বাড়ানো
+  
     await Group.findByIdAndUpdate(groupId, { $inc: { membersCount: 1 } });
 
     return NextResponse.json({ message: "Successfully joined!" }, { status: 200 });
